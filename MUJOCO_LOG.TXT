@@ -1,0 +1,33 @@
+Sat Jul 26 20:12:13 2025
+WARNING: mju_openResource: unknown file 'curi1.xml'
+
+Wed Aug 13 20:13:40 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Wed Aug 13 20:20:14 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Mon Sep  1 21:31:24 2025
+ERROR: could not create window
+
+Tue Sep  2 22:13:58 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Wed Sep  3 07:16:05 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Wed Sep  3 07:17:17 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Wed Sep  3 22:39:46 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Thu Sep  4 20:02:12 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Thu Sep  4 20:02:43 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
+Thu Sep  4 20:41:39 2025
+WARNING: mju_openResource: unknown file 'bimanual_curi1_transfer_cube.xml'
+
