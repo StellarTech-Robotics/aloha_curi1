@@ -1,0 +1,113 @@
+<mujoco>
+    <include file="scene.xml"/>
+    <include file="curi1_dependencies.xml"/>	
+
+    <compiler angle="radian" meshdir="meshes" eulerseq="zyx" autolimits="true" inertiafromgeom="auto" inertiagrouprange="0 1"/>
+    <option timestep="0.002" gravity="0 0 -9.81" cone="elliptic" iterations="100" tolerance="1e-8" solver="Newton"/>
+  
+    <!-- 添加默认材质定义 -->
+    <default>
+        <!-- <geom solimp="0.9 0.95 0.001" solref="0.1 1" friction="1 0.05 0.01" density="2700"/> -->
+        <!-- <joint armature="0.0001" damping="0.01" margin="0.002" frictionloss="0.001"/> -->
+    </default>
+
+    <worldbody>
+        <include file="curi1.xml" />
+
+        <body name="box" pos="0 -0.6 0.57">
+            <joint name="red_box_joint" type="free" frictionloss="0.01" />
+            <inertial pos="0 0 0" mass="0.001" diaginertia="0.002 0.002 0.002" />
+            <geom condim="4" contype="1" conaffinity="15" margin="-0.01" solimp="2 1 0.01" solref="0.01 1" friction="1 0.005 0.0001" pos="0 0 0" size="0.02 0.02 0.02" type="box" name="red_box" rgba="1 0 0 1" />
+        </body>
+
+    </worldbody>
+
+    <!-- actuator、sensor、visual 等 -->
+    <actuator>
+        <!-- <position name="head_joint1" joint="head_joint1" ctrllimited="true" ctrlrange="-1.256 1.256"
+                forcelimited="true" forcerange="-30 30" kp="200" gear="1"/>
+        <position name="head_joint2" joint="head_joint2" ctrllimited="true" ctrlrange="-0.419 0.419"
+                forcelimited="true" forcerange="-30 30" kp="200" gear="1"/> -->
+
+        <position name="l_joint1" joint="l_joint1" ctrllimited="true" ctrlrange="-3.11 3.11"
+                forcelimited="true" forcerange="-800 800" kp="250" gear="1"/>
+        <position name="l_joint2" joint="l_joint2" ctrllimited="true" ctrlrange="-2.27 2.27"
+                forcelimited="true" forcerange="-1600 1600" kp="350" gear="1"/>
+        <position name="l_joint3" joint="l_joint3" ctrllimited="true" ctrlrange="-2.36 2.36"
+                forcelimited="true" forcerange="-3000 3000" kp="250" gear="1"/>
+        <position name="l_joint4" joint="l_joint4" ctrllimited="true" ctrlrange="-3.11 3.11"
+                forcelimited="true" forcerange="-800 800" kp="150" gear="1"/>
+        <position name="l_joint5" joint="l_joint5" ctrllimited="true" ctrlrange="-2.23 2.23"
+                forcelimited="true" forcerange="-500 500" kp="150" gear="1"/>
+        <position name="l_joint6" joint="l_joint6" ctrllimited="true" ctrlrange="-6.28 6.28"
+                forcelimited="true" forcerange="-500 500" kp="150" gear="1"/>
+
+        <position name="Joint_finger1" joint="Joint_finger1" ctrllimited="true" ctrlrange="0 0.0325"
+                forcelimited="true" forcerange="-800 800" kp="100" gear="1"/>
+        <position name="Joint_finger2" joint="Joint_finger2" ctrllimited="true" ctrlrange="0 0.0325"
+                forcelimited="true" forcerange="-800 800" kp="100" gear="1"/>
+
+        <position name="r_joint1" joint="r_joint1" ctrllimited="true" ctrlrange="-3.11 3.11"
+                forcelimited="true" forcerange="-800 800" kp="250" gear="1"/>
+        <position name="r_joint2" joint="r_joint2" ctrllimited="true" ctrlrange="-2.27 2.27"
+                forcelimited="true" forcerange="-1600 1600" kp="350" gear="1"/>
+        <position name="r_joint3" joint="r_joint3" ctrllimited="true" ctrlrange="-2.36 2.36"
+                forcelimited="true" forcerange="-800 800" kp="250" gear="1"/>
+        <position name="r_joint4" joint="r_joint4" ctrllimited="true" ctrlrange="-3.11 3.11"
+                forcelimited="true" forcerange="-800 800" kp="150" gear="1"/>
+        <position name="r_joint5" joint="r_joint5" ctrllimited="true" ctrlrange="-2.23 2.23"
+                forcelimited="true" forcerange="-500 500" kp="150" gear="1"/>
+        <position name="r_joint6" joint="r_joint6" ctrllimited="true" ctrlrange="-6.28 6.28"
+                forcelimited="true" forcerange="-500 500" kp="150" gear="1"/>
+
+        <position name="r_Joint_finger1" joint="r_Joint_finger1" ctrllimited="true" ctrlrange="0 0.0325"
+                forcelimited="true" forcerange="-800 800" kp="100"/>
+        <position name="r_Joint_finger2" joint="r_Joint_finger2" ctrllimited="true" ctrlrange="0 0.0325"
+                forcelimited="true" forcerange="-800 800" kp="100"/>
+
+        <!-- <position name="platform_joint" joint="platform_joint" ctrllimited="true" ctrlrange="0 1"
+                forcelimited="true" forcerange="-1000 1000" kp="100" gear="1"/> -->
+
+        <!-- Velocity control actuators for wheels -->
+        <!-- <velocity name="joint_left_wheel" joint="joint_left_wheel" ctrllimited="false"
+                forcelimited="true" forcerange="-100 100" gear="10"/>
+        <velocity name="joint_right_wheel" joint="joint_right_wheel" ctrllimited="false" 
+                forcelimited="true" forcerange="-100 100" gear="10"/> -->
+    </actuator>
+
+    <contact>
+        <exclude body1="l_link1" body2="l_link2"/>
+        <exclude body1="l_link2" body2="l_link3"/>
+        <exclude body1="l_link3" body2="l_link4"/>
+        <exclude body1="l_link4" body2="l_link5"/>
+        <exclude body1="l_link5" body2="l_link6"/>
+        <exclude body1="r_link1" body2="r_link2"/>
+        <exclude body1="r_link2" body2="r_link3"/>
+        <exclude body1="r_link3" body2="r_link4"/>
+        <exclude body1="r_link4" body2="r_link5"/>
+        <exclude body1="r_link5" body2="r_link6"/>
+        <exclude body1="l_base_link1" body2="l_link1"/>
+        <exclude body1="r_base_link1" body2="r_link1"/>
+        <exclude body1="platform_base_link" body2="l_base_link1"/>
+        <exclude body1="platform_base_link" body2="r_base_link1"/>
+    </contact>
+
+    <!-- 躯干升降台位置 右臂6个关节角度 右臂6个关节角度 -->
+    <!-- <keyframe>
+        <key name="initial_pose" 
+             qpos="0.05
+                   0
+                   0
+                   -0.785 -0.785 -1.57 1 1 0 0.01 0.01
+                   0.785 0.785 1.57 -1 -1 0 0.01 0.01
+                   0 -0.8 0.57 1 0 0 0"/> 
+    </keyframe> -->
+    <keyframe>
+        <key name="initial_pose"
+             qpos="-0.785 -0.785 -1.57 1 1 0 0.0 0.0
+                   0.785 0.785 1.57 -1 -1 0 0.0 0.0
+                   -0.3 -0.7 0.57 1 0 0 0"/>
+    </keyframe>
+
+
+</mujoco>

@@ -1,0 +1,56 @@
+<mujocoinclude>
+    <compiler angle="radian" meshdir="meshes" eulerseq="zyx" autolimits="true" inertiafromgeom="auto" inertiagrouprange="0 1"/>
+    <!-- 材质、网格等 asset 块保持不变，从 curi1_transfer.xml 拷贝过来 -->
+    <asset>
+        <!-- 轮子和底盘 -->
+        <mesh   name="base_link_underpan"      file="base_link_underpan.STL"/>
+        <mesh   name="body_base_link"          file="body_base_link.STL"/>
+        <mesh   name="link_right_wheel"        file="link_right_wheel.STL"/>
+        <mesh   name="link_left_wheel"         file="link_left_wheel.STL"/>
+        <mesh   name="link_swivel_wheel_1_1"   file="link_swivel_wheel_1_1.STL"/>
+        <mesh   name="link_swivel_wheel_1_2"   file="link_swivel_wheel_1_2.STL"/>
+        <mesh   name="link_swivel_wheel_2_1"   file="link_swivel_wheel_2_1.STL"/>
+        <mesh   name="link_swivel_wheel_2_2"   file="link_swivel_wheel_2_2.STL"/>
+        <mesh   name="link_swivel_wheel_3_1"   file="link_swivel_wheel_3_1.STL"/>
+        <mesh   name="link_swivel_wheel_3_2"   file="link_swivel_wheel_3_2.STL"/>
+        <mesh   name="link_swivel_wheel_4_1"   file="link_swivel_wheel_4_1.STL"/>
+        <mesh   name="link_swivel_wheel_4_2"   file="link_swivel_wheel_4_2.STL"/>
+
+        <!-- 升降台 -->
+        <mesh   name="platform_base_link"      file="platform_base_link3.STL"/>
+
+        <!-- 头部 -->
+        <mesh   name="head_link1"              file="head_link1.STL"/>
+        <mesh   name="head_link2"              file="head_link2.STL"/>
+        <mesh   name="camera_link"             file="camera_link.STL"/>
+
+        <!-- 左臂 Mesh -->
+        <mesh   name="l_base_link1"            file="l_base_link1.STL"/>
+        <mesh   name="l_link1"                 file="l_link1.STL"/>
+        <mesh   name="l_link2"                 file="l_link2.STL"/>
+        <mesh   name="l_link3"                 file="l_link3.STL"/>
+        <mesh   name="l_link4"                 file="l_link4.STL"/>
+        <mesh   name="l_link5"                 file="l_link5.STL"/>
+        <mesh   name="l_link6"                 file="l_link6.STL"/>
+        <mesh   name="l_rmg42_base_link"       file="l_rmg42_base_link.STL"/>
+        <mesh   name="Link_finger1"            file="Link_finger1.STL"/>
+        <mesh   name="Link_finger2"            file="Link_finger2.STL"/>
+        <mesh   name="camera_link_left"        file="camera_link.STL"/>
+
+        <!-- 右臂 Mesh -->
+        <mesh   name="r_base_link1"            file="r_base_link1.STL"/>
+        <mesh   name="r_link1"                 file="r_link1.STL"/>
+        <mesh   name="r_link2"                 file="r_link2.STL"/>
+        <mesh   name="r_link3"                 file="r_link3.STL"/>
+        <mesh   name="r_link4"                 file="r_link4.STL"/>
+        <mesh   name="r_link5"                 file="r_link5.STL"/>
+        <mesh   name="r_link6"                 file="r_link6.STL"/>
+        <mesh   name="r_rmg42_base_link"       file="l_rmg42_base_link.STL"/>
+        <mesh   name="r_Link_finger1"          file="Link_finger1.STL"/>
+        <mesh   name="r_Link_finger2"          file="Link_finger2.STL"/>
+        <mesh   name="camera_link_right"       file="camera_link.STL"/>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".0 .0 .0" rgb2=".8 .8 .8" width="100" height="100" />
+        <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true" />
+        <material name="visualgeom" rgba="0.5 0.9 0.2 1" />
+    </asset>
+  </mujocoinclude>

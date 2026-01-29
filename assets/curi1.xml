@@ -1,0 +1,128 @@
+<mujocoinclude model="curi1_full">
+
+  <!-- <body name="base_link_underpan" pos="-0.012628 -0.016092 0.250646"> -->
+  <body name="base_link_underpan" pos="0.0 0.0 0.250646">
+    <inertial pos="0 0 0" mass="2.5521" diaginertia="0.066197 0.034903 0.097938" />
+    <!-- 移除了基座关节，使其固定 -->
+    <!-- <joint name="jointbase" pos="0 0 0" /> -->
+    <site name="imu" size="0.01" pos="0 0 0" />
+    <geom name="base_link_underpan_visual"    type="mesh" mesh="base_link_underpan" />
+    <geom name="base_link_underpan_collision" type="mesh" mesh="base_link_underpan" contype="1" conaffinity="15"/>
+    
+    <!-- 主驱动轮 - 改为固定 -->
+    <body name="link_right_wheel" pos="-0.148 0.015574 -0.153">
+      <inertial pos="-0.024898 0 0" mass="1.0523" diaginertia="0.0033125 0.0018066 0.0018066" />
+      <!-- 注释掉原来的转动关节 -->
+      <!-- <joint name="joint_right_wheel" pos="0 0 0" limited="false" axis="1 0 0" frictionloss="60"/> -->
+      <geom name="link_right_wheel_visual"    type="mesh" mesh="link_right_wheel" />
+      <geom name="link_right_wheel_collision" type="mesh" mesh="link_right_wheel" contype="1" conaffinity="15"/>
+    </body>
+    
+    <body name="link_left_wheel" pos="0.148 0.015574 -0.153">
+      <inertial pos="0.025224 0 0" mass="1.0734" diaginertia="0.0033996 0.0019593 0.0019593" />
+      <!-- 注释掉原来的转动关节 -->
+      <!-- <joint name="joint_left_wheel" pos="0 0 0" limited="false" axis="-1 0 0" frictionloss="60"/> -->
+      <geom name="link_left_wheel_visual"    type="mesh" mesh="link_left_wheel" />
+      <geom name="link_left_wheel_collision" type="mesh" mesh="link_left_wheel" contype="1" conaffinity="15"/>
+    </body>
+    
+    <!-- 万向轮1 - 改为固定 -->
+    <body name="link_swivel_wheel_1_1" pos="0.124 -0.17843 -0.16254">
+      <inertial pos="0.00067987 -0.0050012 -0.013414" quat="-0.134505 0.694593 -0.137471 0.693217" mass="0.088835" diaginertia="4.7479e-05 3.81021e-05 3.16789e-05" />
+      <!-- <joint name="joint_swivel_wheel_1_1" pos="0 0 0" limited="false" axis="0 0 1" frictionloss="30"/> -->
+      <geom name="link_swivel_wheel_1_1_visual"    type="mesh" mesh="link_swivel_wheel_1_1" />
+      <geom name="link_swivel_wheel_1_1_collision" type="mesh" mesh="link_swivel_wheel_1_1" contype="1" conaffinity="15"/>
+
+      <body name="link_swivel_wheel_1_2" pos="-0.0035 -0.022 -0.04516">
+        <inertial pos="0.0010651 0 0" quat="0.865172 0.501475 0 0" mass="0.12664" diaginertia="0.00011169 6.0841e-05 6.0837e-05" />
+        <!-- <joint name="joint_swivel_wheel_1_2" pos="0 0 0" limited="false" axis="1 0 0" frictionloss="30"/> -->
+        <geom name="link_swivel_wheel_1_2_visual"    type="mesh" mesh="link_swivel_wheel_1_2" />
+        <geom name="link_swivel_wheel_1_2_collision" type="mesh" mesh="link_swivel_wheel_1_2" contype="1" conaffinity="15"/>
+      </body>
+    </body>
+    
+    <!-- 万向轮2 - 改为固定 -->
+    <body name="link_swivel_wheel_2_1" pos="-0.126 0.22157 -0.16254">
+      <inertial pos="0.00067987 -0.0050012 -0.013414" quat="-0.134505 0.694593 -0.137471 0.693217" mass="0.088835" diaginertia="4.7479e-05 3.81021e-05 3.16789e-05" />
+      <!-- <joint name="joint_swivel_wheel_2_1" pos="0 0 0" limited="false" axis="0 0 1" frictionloss="30"/> -->
+      <geom name="link_swivel_wheel_2_1_visual"    type="mesh" mesh="link_swivel_wheel_2_1" />
+      <geom name="link_swivel_wheel_2_1_collision" type="mesh" mesh="link_swivel_wheel_2_1" contype="1" conaffinity="15"/>
+
+      <body name="link_swivel_wheel_2_2" pos="-0.0035 -0.022 -0.04516">
+        <inertial pos="0.0010651 0 0" quat="0.96179 0.273788 0 0" mass="0.12664" diaginertia="0.00011169 6.08412e-05 6.08368e-05" />
+        <!-- <joint name="joint_swivel_wheel_2_2" pos="0 0 0" limited="false" axis="1 0 0" frictionloss="30"/> -->
+        <geom name="link_swivel_wheel_2_2_visual"    type="mesh" mesh="link_swivel_wheel_2_2" />
+        <geom name="link_swivel_wheel_2_2_collision" type="mesh" mesh="link_swivel_wheel_2_2" contype="1" conaffinity="15"/>
+      </body>
+    </body>
+    
+    <!-- 万向轮3 - 改为固定 -->
+    <body name="link_swivel_wheel_3_1" pos="0.124 0.22157 -0.16254">
+      <inertial pos="0.00067987 -0.0050012 -0.013414" quat="-0.134505 0.694593 -0.137471 0.693217" mass="0.088835" diaginertia="4.7479e-05 3.81021e-05 3.16789e-05" />
+      <!-- <joint name="joint_swivel_wheel_3_1" pos="0 0 0" limited="false" axis="0 0 1" frictionloss="30"/> -->
+      <geom name="link_swivel_wheel_3_1_visual"    type="mesh" mesh="link_swivel_wheel_3_1" />
+      <geom name="link_swivel_wheel_3_1_collision" type="mesh" mesh="link_swivel_wheel_3_1" contype="1" conaffinity="15"/>
+
+      <body name="link_swivel_wheel_3_2" pos="-0.0035 -0.022 -0.04516">
+        <inertial pos="0.0010651 0 0" quat="0.679224 0.733931 0 0" mass="0.12664" diaginertia="0.00011169 6.0841e-05 6.0837e-05" />
+        <!-- <joint name="joint_swivel_wheel_3_2" pos="0 0 0" limited="false" axis="1 0 0" frictionloss="30"/> -->
+        <geom name="link_swivel_wheel_3_2_visual"    type="mesh" mesh="link_swivel_wheel_3_2" />
+        <geom name="link_swivel_wheel_3_2_collision" type="mesh" mesh="link_swivel_wheel_3_2" contype="1" conaffinity="15"/>
+      </body>
+    </body>
+    
+    <!-- 万向轮4 - 改为固定 -->
+    <body name="link_swivel_wheel_4_1" pos="-0.126 -0.17843 -0.1665">
+      <inertial pos="0.00067987 -0.0050012 -0.0094542" quat="-0.134505 0.694593 -0.137471 0.693217" mass="0.088835" diaginertia="4.7479e-05 3.81021e-05 3.16789e-05" />
+      <!-- <joint name="joint_swivel_wheel_4_1" pos="0 0 0" limited="false" axis="0 0 1" frictionloss="30"/> -->
+      <geom name="link_swivel_wheel_4_1_visual"    type="mesh" mesh="link_swivel_wheel_4_1" />
+      <geom name="link_swivel_wheel_4_1_collision" type="mesh" mesh="link_swivel_wheel_4_1" contype="1" conaffinity="15"/>
+
+      <body name="link_swivel_wheel_4_2" pos="-0.0035 -0.022 -0.0412">
+        <inertial pos="0.0010651 0 0" quat="0.605054 0.796184 0 0" mass="0.12664" diaginertia="0.00011169 6.08413e-05 6.08367e-05" />
+        <!-- <joint name="joint_swivel_wheel_4_2" pos="0 0 0" limited="false" axis="1 0 0" frictionloss="30"/> -->
+        <geom name="link_swivel_wheel_4_2_visual"    type="mesh" mesh="link_swivel_wheel_4_2" />
+        <geom name="link_swivel_wheel_4_2_collision" type="mesh" mesh="link_swivel_wheel_4_2" contype="1" conaffinity="15"/>
+      </body>
+    </body>
+
+    <body name="body_base_link" pos="0 0 0">
+      <inertial pos="-0.0002128 -0.02749 0.37118" quat="1 0 0 0" mass="12.159" diaginertia="0.69175 0.68839 0.15316" />
+      <!-- <joint name="body_base_joint" pos="0 0 0" /> -->
+      <!-- <geom name="body_base_link_visual"    type="mesh" mesh="body_base_link" /> -->
+      <!-- <geom name="body_base_link_collision" type="mesh" mesh="body_base_link" contype="1" conaffinity="15"/> -->
+      <geom name="body_base_link_collision" type="box" pos="0 0 0.8" size="0.1 0.05 0.8" contype="1" conaffinity="15"/>
+
+      <body name="platform_base_link" pos="0 -0.11663 0.371">
+        <inertial pos="-5.42644e-05 -0.060115 0.00743041" quat="0.474164 0.524628 0.474438 0.524254" mass="3.36802" diaginertia="0.0403717 0.0296204 0.015987" />
+        <!-- <joint name="platform_joint" pos="0 0 0" axis="0 0 1" type="slide" range="0 1" damping="2" frictionloss="5"/> -->
+        <!-- <geom name="platform_base_link_visual"    type="mesh" mesh="platform_base_link" /> -->
+        <geom name="platform_base_link_collision" type="mesh" mesh="platform_base_link" contype="1" conaffinity="15"/>
+        <!-- <geom name="platform_base_collision" type="box" size="0.1 0.1 0.15" contype="1" conaffinity="15"/> -->
+        
+        <body name="head_link1" pos="0 -0.1018 0.126">
+    
+          <inertial pos="-0.00017562 -0.015989 0.024926" quat="0.70598 -0.0294127 0.00889767 0.707565" mass="0.049513" diaginertia="2.21963e-05 1.62532e-05 1.35775e-05" />
+          <!-- <joint name="head_joint1" pos="0 0 0" axis="0 0 1" range="-1.256 1.256" frictionloss="5"/> -->
+          <geom name="head_link1_visual"    type="mesh" mesh="head_link1" />
+          <geom name="head_link1_collision" type="mesh" mesh="head_link1" contype="1" conaffinity="5"/>
+
+          <body name="head_link2" pos="0 -0.02 0.044">
+            <!-- <camera name="top" pos="0 -0.05 0.06" fovy="78" mode="fixed" euler="0 3.1416 -1.5707"/> -->
+            <inertial pos="-0.000699615 -0.0336221 0.0562338" quat="0.211429 0.67434 0.21497 0.674056" mass="0.286168" diaginertia="0.000633918 0.000574362 0.000320269" />
+            <!-- <joint name="head_joint2" pos="0 0 0" axis="-1 0 0" range="-0.419 0.419" frictionloss="5"/> -->
+            <geom name="head_link2_visual"    type="mesh" mesh="head_link2" />
+            <geom name="head_link2_collision" type="mesh" mesh="head_link2" contype="1" conaffinity="15"/>
+          </body>
+        </body>
+
+        <include file="curi1_left.xml" />
+        <include file="curi1_right.xml" />
+
+      </body>
+    </body>
+  </body>
+
+ 
+
+</mujocoinclude>

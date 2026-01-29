@@ -1,0 +1,105 @@
+<mujoco model="three_joint_arm">
+  <compiler angle="radian"/>
+  
+  <!-- 恢复重力并调整时间步长 -->
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="RK4"/>
+  
+  <asset>
+    <material name="base_mat" rgba="0.3 0.3 0.3 1"/>
+    <material name="link1_mat" rgba="0.8 0.2 0.2 1"/>
+    <material name="link2_mat" rgba="0.2 0.8 0.2 1"/>
+    <material name="link3_mat" rgba="0.2 0.2 0.8 1"/>
+    <material name="joint_mat" rgba="0.9 0.9 0.1 1"/>
+    <material name="end_effector_mat" rgba="0.9 0.1 0.9 1"/>
+    <material name="ground_mat" rgba="0.5 0.5 0.5 1"/>
+  </asset>
+  
+  <worldbody>
+    <light directional="true" pos="0 0 4"/>
+    <geom name="ground" type="plane" size="3 3 0.1" material="ground_mat"/>
+    
+    <!-- 机械臂基座 -->
+    <body name="base" pos="0 0 0.1">
+      <geom name="base_geom" type="cylinder" size="0.15 0.1" material="base_mat"/>
+      
+      <!-- 第一个关节和连杆 -->
+      <body name="link1" pos="0 0 0.1">
+        <!-- 关节1 (基座旋转) - 减少阻尼 -->
+        <joint name="joint1" type="hinge" axis="0 0 1" range="-3.14159 3.14159" damping="0.1"/>
+        
+        <geom name="joint1_geom" type="cylinder" size="0.08 0.05" material="joint_mat"/>
+        <geom name="link1_geom" type="capsule" size="0.04" fromto="0 0 0.05 0 0 0.55" material="link1_mat"/>
+        
+        <!-- 第二个关节和连杆 -->
+        <body name="link2" pos="0 0 0.5">
+          <!-- 关节2 (肩关节) - 减少阻尼 -->
+          <joint name="joint2" type="hinge" axis="1 0 0" range="-3.14159 3.14159" pos="0 0 0.05" damping="0.05"/>
+          
+          <geom name="joint2_geom" type="cylinder" size="0.06 0.04" material="joint_mat" pos="0 0 0.05"/>
+          <geom name="link2_geom" type="capsule" size="0.035" fromto="0 0 0.05 0 0 0.45" material="link2_mat"/>
+          
+          <!-- 第三个关节和连杆 -->
+          <body name="link3" pos="0 0 0.4">
+            <!-- 关节3 (肘关节) - 减少阻尼 -->
+            <joint name="joint3" type="hinge" axis="1 0 0" range="-3.14159 3.14159" pos="0 0 0.05" damping="0.02"/>
+            
+            <geom name="joint3_geom" type="cylinder" size="0.05 0.03" material="joint_mat" pos="0 0 0.05"/>
+            <geom name="link3_geom" type="capsule" size="0.03" fromto="0 0 0.05 0 0 0.35" material="link3_mat"/>
+            
+            <!-- 末端执行器 -->
+            <body name="end_effector" pos="0 0 0.35">
+              <geom name="end_effector_geom" type="sphere" size="0.04" material="end_effector_mat"/>
+              
+              <!-- 末端执行器坐标系可视化 -->
+              <geom name="ee_x_axis" type="cylinder" size="0.01 0.08" rgba="1 0 0 0.7" pos="0.08 0 0" euler="0 90 0"/>
+              <geom name="ee_y_axis" type="cylinder" size="0.01 0.08" rgba="0 1 0 0.7" pos="0 0.08 0" euler="90 0 0"/>
+              <geom name="ee_z_axis" type="cylinder" size="0.01 0.08" rgba="0 0 1 0.7" pos="0 0 0.08"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    
+    <!-- 目标点可视化 -->
+    <body name="target" pos="0.5 0.5 0.8">
+      <geom name="target_geom" type="sphere" size="0.03" rgba="1 1 0 0.8" contype="0" conaffinity="0"/>
+    </body>
+    
+  </worldbody>
+  
+  <!-- 强化的执行器定义 -->
+  <actuator>
+    <!-- 使用motor类型提供更强力矩，并设置高增益 -->
+    <!-- <motor name="motor1" joint="joint1" ctrlrange="-3.14159 3.14159" gear="50"/>
+    <motor name="motor2" joint="joint2" ctrlrange="-3.14159 3.14159" gear="80"/>
+    <motor name="motor3" joint="joint3" ctrlrange="-3.14159 3.14159" gear="40"/> -->
+    
+    <!-- 或者使用position执行器但增加kp参数 -->
+    
+    <position name="servo1" joint="joint1" ctrlrange="-3.14159 3.14159" kp="100" kv="5"/>
+    <position name="servo2" joint="joint2" ctrlrange="-3.14159 3.14159" kp="150" kv="5"/>
+    <position name="servo3" joint="joint3" ctrlrange="-3.14159 3.14159" kp="80" kv="5"/>
+   
+  </actuator>
+  
+  <!-- 传感器定义 -->
+  <sensor>
+    <jointpos name="joint1_pos" joint="joint1"/>
+    <jointpos name="joint2_pos" joint="joint2"/>
+    <jointpos name="joint3_pos" joint="joint3"/>
+    <jointvel name="joint1_vel" joint="joint1"/>
+    <jointvel name="joint2_vel" joint="joint2"/>
+    <jointvel name="joint3_vel" joint="joint3"/>
+    <framepos name="end_effector_pos" objtype="body" objname="end_effector"/>
+    <framequat name="end_effector_quat" objtype="body" objname="end_effector"/>
+  </sensor>
+  
+  <!-- 关键帧定义 -->
+  <keyframe>
+    <key name="home" qpos="0 -0.785 0.785"/>
+    <key name="pose1" qpos="0.785 0.524 -1.047"/>
+    <key name="pose2" qpos="-0.785 1.047 -1.571"/>
+    <key name="pose3" qpos="0 1.571 0"/>
+  </keyframe>
+  
+</mujoco>

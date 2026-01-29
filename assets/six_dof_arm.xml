@@ -1,0 +1,94 @@
+<mujoco model="simple_six_axis_arm">
+  <compiler angle="radian"/>
+  
+  <option timestep="0.001" gravity="0 0 -9.81"/>
+  
+  <asset>
+    <material name="base" rgba="0.3 0.3 0.3 1"/>
+    <material name="link1" rgba="0.8 0.2 0.2 1"/>
+    <material name="link2" rgba="0.2 0.8 0.2 1"/>
+    <material name="link3" rgba="0.2 0.2 0.8 1"/>
+    <material name="link4" rgba="0.8 0.2 0.8 1"/>
+    <material name="link5" rgba="0.2 0.8 0.8 1"/>
+    <material name="link6" rgba="0.8 0.8 0.2 1"/>
+  </asset>
+  
+  <worldbody>
+    <light directional="true" pos="0 0 3"/>
+    <geom type="plane" size="2 2 0.1" rgba="0.5 0.5 0.5 1"/>
+    
+    <!-- 基座 -->
+    <body name="base" pos="0 0 0.1">
+      <geom type="cylinder" size="0.2 0.1" material="base"/>
+      
+      <!-- 关节1 -->
+      <body name="link1" pos="0 0 0.1">
+        <joint name="joint1" type="hinge" axis="0 0 1" range="-3.1416 3.1416" damping="0.5"/>
+        <geom type="cylinder" size="0.08 0.05" material="link1"/>
+        <geom type="capsule" size="0.04" fromto="0 0 0.05 0 0 0.3" material="link1"/>
+        
+        <!-- 关节2 -->
+        <body name="link2" pos="0 0 0.3">
+          <joint name="joint2" type="hinge" axis="0 1 0" range="-3.1416 3.1416" damping="0.5"/>
+          <geom type="cylinder" size="0.06 0.04" material="link2" euler="90 0 0"/>
+          <geom type="capsule" size="0.035" fromto="0 0 0 0 0 0.4" material="link2"/>
+          
+          <!-- 关节3 -->
+          <body name="link3" pos="0 0 0.4">
+            <joint name="joint3" type="hinge" axis="0 1 0" range="-3.1416 3.1416" damping="0.5"/>
+            <geom type="cylinder" size="0.05 0.03" material="link3" euler="90 0 0"/>
+            <geom type="capsule" size="0.03" fromto="0 0 0 0 0 0.3" material="link3"/>
+            
+            <!-- 关节4 -->
+            <body name="link4" pos="0 0 0.3">
+              <joint name="joint4" type="hinge" axis="0 0 1" range="-3.1416 3.1416" damping="0.5"/>
+              <geom type="cylinder" size="0.04 0.02" material="link4"/>
+              <geom type="capsule" size="0.025" fromto="0 0 0.02 0 0 0.12" material="link4"/>
+              
+              <!-- 关节5 -->
+              <body name="link5" pos="0 0 0.12">
+                <joint name="joint5" type="hinge" axis="0 1 0" range="-3.1416 3.1416" damping="0.5"/>
+                <geom type="cylinder" size="0.03 0.015" material="link5" euler="90 0 0"/>
+                <geom type="capsule" size="0.02" fromto="0 0 0.015 0 0 0.08" material="link5"/>
+                
+                <!-- 关节6 -->
+                <body name="link6" pos="0 0 0.08">
+                  <joint name="joint6" type="hinge" axis="0 0 1" range="-3.1416 3.1416" damping="0.5"/>
+                  <geom type="cylinder" size="0.025 0.01" material="link6"/>
+                  
+                  <!-- 末端执行器 -->
+                  <body name="end_effector" pos="0 0 0.05">
+                    <geom type="sphere" size="0.02" rgba="1 0 0 1"/>
+                    <!-- 坐标轴 -->
+                    <geom type="cylinder" size="0.002 0.03" rgba="1 0 0 1" pos="0.03 0 0" euler="0 90 0"/>
+                    <geom type="cylinder" size="0.002 0.03" rgba="0 1 0 1" pos="0 0.03 0" euler="90 0 0"/>
+                    <geom type="cylinder" size="0.002 0.03" rgba="0 0 1 1" pos="0 0 0.03"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    
+    <!-- 目标点 -->
+    <body name="target" pos="0.5 0.5 0.5">
+      <geom type="sphere" size="0.02" rgba="1 1 0 0.8" contype="0" conaffinity="0"/>
+    </body>
+  </worldbody>
+  
+  <actuator>
+    <position joint="joint1" ctrlrange="-3.1416 3.1416" kp="100"/>
+    <position joint="joint2" ctrlrange="-3.1416 3.1416" kp="150"/>
+    <position joint="joint3" ctrlrange="-3.1416 3.1416" kp="80"/>
+    <position joint="joint4" ctrlrange="-3.1416 3.1416" kp="80"/>
+    <position joint="joint5" ctrlrange="-3.1416 3.1416" kp="80"/>
+    <position joint="joint6" ctrlrange="-3.1416 3.1416" kp="80"/>
+  </actuator>
+  
+  <keyframe>
+    <key name="home" qpos="0 -0.785 0.785 0 0 0"/>
+  </keyframe>
+  
+</mujoco>

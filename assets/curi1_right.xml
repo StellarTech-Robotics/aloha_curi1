@@ -1,0 +1,78 @@
+<mujocoinclude>
+  <body name="r_base_link1" pos="-0.105 -0.1103 0.044" quat="0.9239 0 -0.3827 0">
+    <inertial pos="0 0 0" mass="0.23441" diaginertia="0.00027369 0.000264 0.00036679"/>
+    <!-- <geom name="r_base_visual"    type="mesh" mesh="r_base_link1" />
+    <geom name="r_base_collision" type="mesh" mesh="r_base_link1" contype="1" conaffinity="15"/> -->
+    <geom name="r_base_collision" type="cylinder" size="0.01 0.01" contype="1" conaffinity="15"/>
+
+    <!-- 关节1-6 -->
+    <body name="r_link1" pos="0 0 0.187" quat="1 0 0 0">
+      <inertial pos="0 0 0" mass="0.59353" diaginertia="0.0012661 0.0011816 0.00056131"/>
+      <joint name="r_joint1" type="hinge" pos="0 0 0" axis="0 0 1" range="-3.11 3.11" frictionloss="60" armature="0.01"/>
+      <geom name="r_link1_visual"    type="mesh" mesh="r_link1"    />
+      <geom name="r_link1_collision" type="mesh" mesh="r_link1" contype="1" conaffinity="15"/>
+
+      <body name="r_link2" pos="0 0 0" quat="0.5 0.5 -0.5 0.5">
+        <inertial pos="0 0 0" mass="0.86416" diaginertia="0.00063253 0.0020527 0.0019528"/>
+        <joint name="r_joint2" type="hinge" pos="0 0 0" axis="0 0 1" range="-2.27 2.27" frictionloss="60" armature="0.01"/>
+        <geom name="r_link2_visual"    type="mesh" mesh="r_link2" />
+        <geom name="r_link2_collision" type="mesh" mesh="r_link2" contype="1" conaffinity="15"/>
+
+        <body name="r_link3" pos="0.256 0 0" quat="0.70710678 0 0 0.70710678">
+          <inertial pos="0 0 0" mass="0.28963" diaginertia="0.00063737 0.00015649 0.00061418"/>
+          <joint name="r_joint3" type="hinge" pos="0 0 0" axis="0 0 1" range="-2.36 2.36" frictionloss="60" armature="0.01"/>
+          <geom name="r_link3_visual"    type="mesh" mesh="r_link3"    />
+          <geom name="r_link3_collision" type="mesh" mesh="r_link3" contype="1" conaffinity="15"/>
+
+          <body name="r_link4" pos="0 -0.21 0" quat="0.70710678 0.70710678 0 0">
+            <inertial pos="0 0 0" mass="0.23942" diaginertia="0.00028595 0.00026273 0.0001199"/>
+            <joint name="r_joint4" type="hinge" pos="0 0 0" axis="0 0 1" range="-3.11 3.11" frictionloss="30" armature="0.005"/>
+            <geom name="r_link4_visual"    type="mesh" mesh="r_link4"    />
+            <geom name="r_link4_collision" type="mesh" mesh="r_link4" contype="1" conaffinity="15"/>
+
+            <body name="r_link5" pos="0 0 0" quat="0.70710678 -0.70710678 0 0">
+              <inertial pos="0 0 0" mass="0.21879" diaginertia="0.00035053 0.00010492 0.00033447"/>
+              <joint name="r_joint5" type="hinge" pos="0 0 0" axis="0 0 1" range="-2.23 2.23" frictionloss="30" armature="0.005"/>
+              <geom name="r_link5_visual"    type="mesh" mesh="r_link5"    />
+              <geom name="r_link5_collision" type="mesh" mesh="r_link5" contype="1" conaffinity="15"/>
+
+              <body name="r_link6" pos="0 -0.115 0" quat="0.70710678 -0.70710678 0 0">
+                <inertial pos="0 0 0" mass="0.22147" diaginertia="0.0001376 0.00026855 0.00035277"/>
+                <joint name="r_joint6" type="hinge" pos="0 0 0" axis="0 0 1" range="-6.28 6.28" frictionloss="30" armature="0.005"/>
+                <geom name="r_link6_visual"    type="mesh" mesh="r_link6" contype="1" conaffinity="15"/>
+                <body name="r_rmg42_base_link" pos="0.0 0.0 0.045" quat="0 0.7071 -0.7071 0">
+                  <body name="curi1_right_camera_focus" pos="0.15 0 0.01">
+                    <site pos="0 0 0" size="0.01" type="sphere" name="right_cam_focus" rgba="0 0 1 0"/>
+                  </body>
+                  <site pos="0.15 0 0" size="0.003 0.003 0.03" type="box" name="cali_right_site1" rgba="0 0 1 0"/>
+                  <site pos="0.15 0 0" size="0.003 0.03 0.003" type="box" name="cali_right_site2" rgba="0 0 1 0"/>
+                  <site pos="0.15 0 0" size="0.03 0.003 0.003" type="box" name="cali_right_site3" rgba="0 0 1 0"/>
+                  <camera name="right_wrist" pos="0 0.23 -0.08" fovy="20" mode="fixed" euler="3.1416 0 2.3562"/>
+                  <!-- <camera name="right_wrist" pos="0 0.06 0" fovy="20" mode="fixed" euler="3.1416 0 3.1416"/> -->
+                  <inertial pos="0 0 0" mass="0.1" diaginertia="0.01 0.01 0.01"/>
+                  <geom name="r_rmg42_base_visual"    type="mesh" mesh="r_rmg42_base_link" />
+                  <geom name="r_rmg42_base_collision" type="mesh" mesh="r_rmg42_base_link" contype="1" conaffinity="15"/>
+                  <!-- 右端执行器 手指1 -->
+                  <body name="r_Link_finger1" pos="0.0 0.0 0.0891">
+                    <inertial pos="0 0 0" mass="0.02" diaginertia="4.0976E-06 3.8635E-06 1.6965E-06"/>
+                    <joint name="r_Joint_finger1" type="slide" axis="-1 0 0" range="0.0 0.0325" frictionloss="30"/>
+                    <geom name="r_finger1_collision" type="mesh" mesh="Link_finger1" condim="4" solimp="0.95 0.95 0.01" solref="0.01 0.2" contype="1" conaffinity="0" friction="1.5 0.01 0.0001" pos="0 0 0" euler="0 0 0" />
+                    <!-- <geom condim="4" solimp="2 1 0.01" solref="0.01 1" contype="1" conaffinity="1" friction="1 0.005 0.001" pos="0 0 0" euler="0 0 0" type="box" size="0.005 0.015 0.045" name="curi1_right/left_gripper_finger"/> -->
+                  </body>
+
+                  <!-- 右端执行器 手指2 -->
+                  <body name="r_Link_finger2" pos="0.0 0.0 0.0891">
+                    <inertial pos="0 0 0" mass="0.02" diaginertia="4.0976E-06 3.8635E-06 1.6965E-06"/>
+                    <joint name="r_Joint_finger2" type="slide" axis="1 0 0" range="0.0 0.0325" frictionloss="30"/>
+                    <geom name="r_finger2_collision" type="mesh" mesh="Link_finger2" condim="4" solimp="0.95 0.95 0.01" solref="0.01 0.2" contype="1" conaffinity="0" friction="1.5 0.01 0.0001" pos="0 0 0" euler="0 0 0"/>
+                    <!-- <geom condim="4" solimp="2 1 0.01" solref="0.01 1" contype="1" conaffinity="1" friction="1 0.005 0.001" pos="0 0 0" euler="0 0 0" type="box" size="0.005 0.015 0.045" name="curi1_right/right_gripper_finger"/> -->
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </body>
+</mujocoinclude>
